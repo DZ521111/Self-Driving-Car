@@ -5,6 +5,7 @@ import numpy as np
 from random import random, randint
 import matplotlib.pyplot as plt
 import time
+import pandas as pd
 
 # Importing the Kivy packages
 from kivy.app import App
@@ -34,6 +35,7 @@ action2rotation = [0,20,-20] # action = 0 => no rotation, action = 1 => rotate 2
 last_reward = 0 # initializing the last reward
 scores = [] # initializing the mean score curve (sliding window of the rewards) with respect to time
 
+# starting of map
 # Initializing the map
 first_update = True # using this trick to initialize the map only once
 def init():
