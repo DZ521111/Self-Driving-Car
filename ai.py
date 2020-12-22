@@ -34,6 +34,7 @@ class Network(nn.Module):
 class ReplayMemory(object):
     
     def __init__(self, capacity):
+        # total capacity
         self.capacity = capacity
         self.memory = []
     
