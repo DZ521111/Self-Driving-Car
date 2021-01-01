@@ -2,6 +2,7 @@
 
 # Importing the libraries
 
+import numpy as np
 from random import random, randint
 import matplotlib.pyplot as plt
 import time
@@ -35,7 +36,7 @@ action2rotation = [0,20,-20]
 last_reward = 0
 scores = []
 
-# Initializing the map
+# Map initializing
 first_update = True
 def init():
     global sand
@@ -53,7 +54,7 @@ last_distance = 0
 # Creating the car class
 
 class Car(Widget):
-    
+
     angle = NumericProperty(0)
     rotation = NumericProperty(0)
     velocity_x = NumericProperty(0)
