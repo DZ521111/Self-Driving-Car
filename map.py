@@ -6,7 +6,6 @@ import numpy as np
 from random import random, randint
 import matplotlib.pyplot as plt
 import time
-import pandas as pd
 
 # Importing the Kivy packages
 from kivy.app import App
