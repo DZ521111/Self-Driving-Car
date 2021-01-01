@@ -11,6 +11,7 @@ import torch.nn.functional as F
 import torch.optim as optim
 import torch.autograd as autograd
 from torch.autograd import Variable
+import pandas as pd
 
 
 # Creating the architecture of the Neural Network
