@@ -71,6 +71,7 @@ class Car(Widget):
     signal2 = NumericProperty(0)
     signal3 = NumericProperty(0)
 
+    # move function
     def move(self, rotation):
         self.pos = Vector(*self.velocity) + self.pos
         self.rotation = rotation
