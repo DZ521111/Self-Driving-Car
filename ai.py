@@ -43,7 +43,7 @@ class ReplayMemory(object):
         self.memory.append(event)
         if len(self.memory) > self.capacity:
             del self.memory[0]
-    
+
     def sample(self, batch_size):
         samples = zip(*random.sample(self.memory, batch_size))
         return map(lambda x: Variable(torch.cat(x, 0)), samples)
@@ -51,7 +51,7 @@ class ReplayMemory(object):
 # Implementing Deep Q Learning
 
 class Dqn():
-    
+
     def __init__(self, input_size, nb_action, gamma):
         self.gamma = gamma
         self.reward_window = []
@@ -61,12 +61,12 @@ class Dqn():
         self.last_state = torch.Tensor(input_size).unsqueeze(0)
         self.last_action = 0
         self.last_reward = 0
-    
+
     def select_action(self, state):
         probs = F.softmax(self.model(Variable(state, volatile = True))*100) # T=100
         action = probs.multinomial(1)
         return action.data[0,0]
-    
+
     # self learn function
     def learn(self, batch_state, batch_next_state, batch_reward, batch_action):
         outputs = self.model(batch_state).gather(1, batch_action.unsqueeze(1)).squeeze(1)
@@ -76,7 +76,7 @@ class Dqn():
         self.optimizer.zero_grad()
         td_loss.backward(retain_graph=True)
         self.optimizer.step()
-    
+
     # self updation function
     def update(self, reward, new_signal):
         new_state = torch.Tensor(new_signal).float().unsqueeze(0)
@@ -92,15 +92,15 @@ class Dqn():
         if len(self.reward_window) > 1000:
             del self.reward_window[0]
         return action
-    
+
     def score(self):
         return sum(self.reward_window)/(len(self.reward_window)+1.)
-    
+
     def save(self):
         torch.save({'state_dict': self.model.state_dict(),
                     'optimizer' : self.optimizer.state_dict(),
-                   }, 'last_brain.pth')
-    
+                    }, 'last_brain.pth')
+    # load the window
     def load(self):
         if os.path.isfile('last_brain.pth'):
             print("=> loading checkpoint... ")
