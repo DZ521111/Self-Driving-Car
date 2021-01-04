@@ -221,6 +221,7 @@ class CarApp(App):
         self.painter.canvas.clear()
         sand = np.zeros((longueur,largeur))
 
+    # save the current model
     def save(self, obj):
         print("saving brain...")
         brain.save()
